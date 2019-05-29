@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         mStorySelected = mT1;
         mStoryTextView.setText(mStorySelected.getStoryID());
-        //mAnswerTop.setTest(mStory
+        //mAnswerTop.setTest(mStorySelected
 
 
         // TODO: Coloque o evento do click do botão, caso precise colocar a visibilidade no botão invisivel utilize a função
