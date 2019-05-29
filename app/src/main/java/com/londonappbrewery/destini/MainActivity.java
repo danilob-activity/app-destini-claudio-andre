@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         mT3_Ans2.setChildStory(mT5);
         mT2_Ans2.setChildStory(mT4);
 
+        mStorySelected = mT1;
+        mStoryTextView.setText(mStorySelected.getStoryID());
+        //mAnswerTop.setTest(mStory
+
 
         // TODO: Coloque o evento do click do botão, caso precise colocar a visibilidade no botão invisivel utilize a função
         // do botão setVisibility(View.GONE):
