@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
     Button mAnswerBottom;
     // TODO: Declare as variaveis aqui:
     Story mT1 =  new Story(R.string.T1_Story);
-    Story mT2 =  new Story(R.string.T1_Story);
-    Story mT3 =  new Story(R.string.T1_Story);
+    Story mT2 =  new Story(R.string.T2_Story);
+    Story mT3 =  new Story(R.string.T3_Story);
     Story mT4 =  new Story(R.string.T4_End);
     Story mT5 =  new Story(R.string.T5_End);
     Story mT6 =  new Story(R.string.T6_End);
@@ -29,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
     Answer mT3_Ans = new Answer(R.string.T3_Ans1);
     Answer mT3_Ans2 = new Answer(R.string.T3_Ans2);
 
-    int mStoryIndex;
-
-
-    //indice corrente da historia
     private Story mStorySelected;
 
 
@@ -42,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
             mAnswerTop.setText(storySelect.getAnswerTop().getAnswerID());
             mAnswerBottom.setText(storySelect.getAnswerBottom().getAnswerID());
 
+
+        } else{
+            mAnswerTop.setVisibility(View.INVISIBLE);
+            mAnswerBottom.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         if(savedInstanceState!=null){
             mStorySelected = (Story) savedInstanceState.getSerializable("StoryKey");
+            direct(mStorySelected);
+
 
         }
     }
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         mAnswerTop.setText(mStorySelected.getAnswerTop().getAnswerID());
         mAnswerBottom.setText(mStorySelected.getAnswerBottom().getAnswerID());
 
+        direct(mStorySelected);
+
 
         // TODO: Coloque o evento do click do botão, caso precise colocar a visibilidade no botão invisivel utilize a função
         // do botão setVisibility(View.GONE):
@@ -98,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mStorySelected = mStorySelected.getAnswerTop().getChildStory();
-                mStoryTextView.setText(mStorySelected.getStoryID());
+                direct(mStorySelected);
 
             }
         });
@@ -107,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mStorySelected = mStorySelected.getAnswerBottom().getChildStory();
-                mStoryTextView.setText(mStorySelected.getStoryID());
+                direct(mStorySelected);
 
             }
         });
@@ -119,6 +123,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState)
     {
         super.onSaveInstanceState(outState);
-        outState.putInt("StoryKey",mStoryIndex);
+        outState.putSerializable("StoryKey", mStorySelected);
     }
 }
